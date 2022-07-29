@@ -12,7 +12,7 @@ import {
 } from "../app/taskFeatures/taskSlice";
 const Form = () => {
   const dispatch = useDispatch();
-  const { taskDesc, date, time, user, data } = useSelector(
+  const { taskDesc, date, time, user, isCompleted } = useSelector(
     (store) => store.task
   );
   // console.log(data);
@@ -21,11 +21,13 @@ const Form = () => {
   };
   const handleSave = (e) => {
     e.preventDefault();
-    dispatch(addPersonData({ taskDesc, date, time, user, id: nanoid() }));
+    dispatch(
+      addPersonData({ taskDesc, date, isCompleted, time, user, id: nanoid() })
+    );
     dispatch(showForm());
   };
   return (
-    <div className=" bg-slate-200 w-full px-3 py-3 list-none font-semibold text-gray-500 rounded-b-md">
+    <div className=" bg-slate-200 w-full px-5 py-3 list-none font-semibold text-gray-500 rounded-b-md">
       <div className="pb-2">
         <label className="">Task Description</label>
       </div>

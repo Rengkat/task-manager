@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  isHideForm: true,
+  isHideForm: false,
   taskDesc: "",
   date: "",
   time: "",
@@ -8,6 +8,7 @@ const initialState = {
   taskTitle: "",
   isEditing: false,
   editID: null,
+  isCompleted: false,
   data: [],
 };
 
@@ -42,6 +43,25 @@ const taskSlice = createSlice({
       state.editID = action.payload;
       state.taskDesc = specificItem.taskDesc;
     },
+
+    //  return {
+    //   ...state,
+    //   cart: state.cart.map((x) =>
+    //     x.id === action.payload ? { ...x, quantity: x.quantity + 1 } : x
+    //   ),
+    // };
+    completed(state, action) {
+      const item = state.data.findIndex((x) => x.id === action.payload);
+      if (item) {
+        state.isCompleted = !state.isCompleted;
+      }
+    },
+    deletTask(state, action) {
+      const deletedTask = state.data.filter(
+        (item) => item.id !== action.payload
+      );
+      state.data = deletedTask;
+    },
   },
 });
 
@@ -54,4 +74,6 @@ export const {
   addPersonData,
   showForm,
   editItem,
+  completed,
+  deletTask,
 } = taskSlice.actions;

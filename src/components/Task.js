@@ -1,13 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { BiPlus } from "react-icons/bi";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdDelete } from "react-icons/md";
+import { GrCheckmark } from "react-icons/gr";
 import { FaBell } from "react-icons/fa";
-import { editItem, showForm } from "../app/taskFeatures/taskSlice";
+import {
+  editItem,
+  showForm,
+  completed,
+  deletTask,
+} from "../app/taskFeatures/taskSlice";
 
 const Task = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((store) => store.task);
+  const { data, isCompleted } = useSelector((store) => store.task);
   console.log(data);
+
+  const handleDelet = (e, id) => {
+    dispatch(deletTask(id));
+    e.preventDefault();
+  };
+  const handleCompleted = (e, id) => {
+    dispatch(completed(id));
+    e.preventDefault();
+  };
   const handleEdit = (e, id) => {
     e.preventDefault();
     // console.log(e);
@@ -41,14 +56,22 @@ const Task = () => {
                   </div>
                   <p className=" py-6">{d.taskDesc}</p>
                 </div>
-                <div className="flex justify-center items-center w-8 h-8 py-8 pr-2 text-gray-500">
+
+                <div className="flex justify-center items-center w-8 h-8 py-8 pr-9 text-gray-500">
+                  <button
+                    onClick={(e) => handleDelet(e, d.id)}
+                    className="border-y-2 border-l-2 border-gray-200 p-2 rounded-l">
+                    <MdDelete />
+                  </button>
                   <button
                     onClick={(e) => handleEdit(e, d.id)}
-                    className="border-2 border-gray-200 p-2 rounded-l">
+                    className="border-2 border-gray-200 p-2 ">
                     <MdEdit />
                   </button>
-                  <button className="border-y-2 border-r-2 border-gray-200 p-2 rounded-r">
-                    <FaBell />
+                  <button
+                    onClick={(e) => handleCompleted(e, d.id)}
+                    className="border-y-2 border-r-2 border-gray-200 p-2 rounded-r">
+                    {isCompleted ? <GrCheckmark /> : <FaBell />}
                   </button>
                 </div>
               </div>
