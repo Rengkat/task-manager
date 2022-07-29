@@ -49,7 +49,7 @@ const Form = () => {
               type="date"
               name="date"
               id=""
-              className="md:w-[12rem] p-2 rounded"
+              className="w-[8rem] md:w-[12rem] p-2 rounded"
             />
           </li>
         </div>
@@ -63,7 +63,7 @@ const Form = () => {
               type="time"
               name="time"
               id=""
-              className="md:w-[12rem] p-2 rounded"
+              className="w-[8rem] md:w-[12rem] p-2 rounded"
             />
           </li>
         </div>
