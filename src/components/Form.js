@@ -25,7 +25,7 @@ const Form = () => {
     dispatch(showForm());
   };
   return (
-    <div className=" bg-slate-200 w-full px-5 py-3 list-none font-semibold text-gray-500 rounded-b-md">
+    <div className=" bg-slate-200 w-full px-3 py-3 list-none font-semibold text-gray-500 rounded-b-md">
       <div className="pb-2">
         <label className="">Task Description</label>
       </div>

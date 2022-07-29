@@ -13,7 +13,7 @@ function App() {
   };
   return (
     <div className=" w-full mt-20 flex items-center justify-center ">
-      <form className="w-full p-5 md:p-0 md:w-[30%]">
+      <form className="w-full p-3 md:p-0 md:w-[30%]">
         <div className=" flex w-full">
           <div className=" border-2 font-semibold text-gray-500 border-slate-200 py-1 px-4 w-full">
             <h1>Task {data.length + 1}</h1>
