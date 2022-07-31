@@ -43,23 +43,16 @@ const taskSlice = createSlice({
       state.editID = action.payload;
       state.taskDesc = specificItem.taskDesc;
     },
-
-    //  return {
-    //   ...state,
-    //   cart: state.cart.map((x) =>
-    //     x.id === action.payload ? { ...x, quantity: x.quantity + 1 } : x
-    //   ),
-    // };
     completed(state, action) {
-      const item = state.data.findIndex((x) => x.id === action.payload);
-      if (item) {
-        state.isCompleted = !state.isCompleted;
-      }
+      // state.isCompleted = !state.isCompleted;
+      let newTask = state.data.find((task) => task.id === action.payload);
+      newTask.isCompleted = !newTask.isCompleted;
     },
     deletTask(state, action) {
       const deletedTask = state.data.filter(
         (item) => item.id !== action.payload
       );
+
       state.data = deletedTask;
     },
   },

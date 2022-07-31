@@ -13,7 +13,7 @@ import {
 const Task = () => {
   const dispatch = useDispatch();
   const { data, isCompleted } = useSelector((store) => store.task);
-  console.log(data);
+  let me = data.map((item) => item.isCompleted);
 
   const handleDelet = (e, id) => {
     dispatch(deletTask(id));
@@ -33,6 +33,7 @@ const Task = () => {
     <div className=" w-full flex items-center justify-center ">
       <div className="w-[30rem] py-3 md:p-0 md:w-[100%] ">
         {data.map((d, index) => {
+          // console.log(d.isCompleted);
           return (
             <div key={index} className="my-5 shadow-md">
               <div className=" flex w-full my-0">
@@ -71,7 +72,7 @@ const Task = () => {
                   <button
                     onClick={(e) => handleCompleted(e, d.id)}
                     className="border-y-2 border-r-2 border-gray-200 p-2 rounded-r">
-                    {isCompleted ? <GrCheckmark /> : <FaBell />}
+                    {d.isCompleted ? <GrCheckmark /> : <FaBell />}
                   </button>
                 </div>
               </div>
